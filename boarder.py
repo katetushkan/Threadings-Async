@@ -41,7 +41,9 @@ def multi_threading_redrawing(set_flags):
     processes = []
 
     for i in range(process_count):
-        set_for_one_process = set_flags[i * quantity_of_items :(i + 1) * quantity_of_items  - 1]
+        left_boarder = i * quantity_of_items
+        right_boarder = (i + 1) * quantity_of_items - 1
+        set_for_one_process = set_flags[left_boarder:right_boarder]
         process = multiprocessing.Process(
             target=queue_forming,
             args=set_for_one_process
